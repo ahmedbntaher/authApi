@@ -1,0 +1,31 @@
+syntax = "proto3";
+package user;
+
+// Définition du message user
+message user {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string password = 4;
+}
+
+// Définition des messages de requête et de réponse pour les méthodes
+message GetUserRequest {
+  string user_id = 1;
+}
+message GetUserResponse {
+  user user = 1;
+}
+message SearchUserRequest {
+  string query = 1;
+}
+message SearchUserResponse {
+  repeated user users = 1;
+}
+
+// Définition du service de films
+service UserService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc SearchUser(SearchUserRequest) returns (SearchUserResponse);
+  // Ajouter d'autres méthodes au besoin
+}
